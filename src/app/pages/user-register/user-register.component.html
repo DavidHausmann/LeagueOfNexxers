@@ -1,0 +1,106 @@
+<div class="loading-shade" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<header class="register__header">
+    <h1>Vamos criar a sua conta!</h1>
+</header>
+<body>
+    <section class="register__form">
+        <form class="form" #form [formGroup]="userRegisterFormGroup" (ngSubmit)="createUser()" autocomplete="off">
+            <mat-form-field class="material__form" appearance="outline">
+              <mat-label>Digite seu email</mat-label>
+              <input
+                type="text"
+                matInput
+                name="user"
+                required
+                formControlName="user"
+                autocomplete="off"
+              />
+              <mat-error>
+                <p *ngIf="userRegisterFormGroup.controls['user'].errors?.['required']">
+                  Email é um campo obrigatório.
+                </p>
+                <p *ngIf="userRegisterFormGroup.controls['user'].errors?.['email']">
+                    Email deve ser válido.
+                  </p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="material__form"appearance="outline">
+              <mat-label>Digite sua senha (mínimo 8 caracteres)</mat-label>
+              <input
+                [type]="hidePassword ? 'password' : 'text'"
+                matInput
+                name="password"
+                required
+                pattern="^(?=(.*[a-z]))(?=(.*[A-Z]))(?=(.*\d))(?=(.*[\W_]))[A-Za-z\d\W_]{8,}$"
+                formControlName="password"
+                placeholder="Conter caracter especial, letra maíuscula e número"
+              />
+              <img 
+                matSuffix 
+                src="../../../assets/icons/eye-{{ hidePassword ? 'close' : 'open' }}.svg" 
+                alt="Ícone mostrar/esconder senha" 
+                (click)="hidePassword = !hidePassword"
+              >
+              <mat-error>
+                <p *ngIf="userRegisterFormGroup.controls['password'].errors?.['required']">
+                  Senha é um campo obrigatório.
+                </p>
+                <p *ngIf="userRegisterFormGroup.controls['password'].errors?.['pattern']">
+                   {{ 'Senha deve conter 8 caracteres, incluindo:' }} <br> {{ 'Caracter especial, letra maíuscula e número.' }}
+                </p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="material__form" appearance="outline">
+                <mat-label>Digite seu nome</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  name="userName"
+                  required
+                  formControlName="userName"
+                />
+                <mat-error>
+                  <p *ngIf="userRegisterFormGroup.controls['userName'].errors?.['required']">
+                    Nome é um campo obrigatório.
+                  </p>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="material__form" appearance="outline">
+                <mat-label>Digite sua data de nascimento</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  name="birthDate"
+                  required
+                  formControlName="birthDate"
+                  mask="00/00/0000"
+                  autocomplete="off"
+                />
+                <mat-error>
+                  <p *ngIf="userRegisterFormGroup.controls['birthDate'].errors?.['required']">
+                    Data de nascimento é um campo obrigatório.
+                  </p>
+                  <p
+                    *ngIf="!userRegisterFormGroup.controls['birthDate'].errors?.['required'] 
+                      && 
+                      (userRegisterFormGroup.controls['birthDate'].errors?.['invalidDate'] 
+                      || 
+                      userRegisterFormGroup.controls['birthDate'].errors?.['mask'])"
+                    >
+                    Data de nascimento inválida.
+                  </p>
+                </mat-error>
+            </mat-form-field>
+            <section class="register__actions">
+              <button type="submit">
+                Acessar
+              </button>
+              <button class="back__button" (click)="backToLogin()">
+                Voltar
+              </button>
+            </section>
+          </form>
+    </section>
+</body>

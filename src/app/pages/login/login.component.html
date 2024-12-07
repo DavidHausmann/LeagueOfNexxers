@@ -1,0 +1,57 @@
+<div class="loading-shade" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<header class="login__header">
+    <h1>Bem vindo(a) à <a class="login__header--color">LeagueOfNexxers</a></h1>
+</header>
+<body>
+    <section class="login__form">
+        <form class="form"  [formGroup]="loginFormGroup" autocomplete="off">
+            <mat-form-field class="material__form" appearance="outline">
+              <mat-label>Digite seu email</mat-label>
+              <input
+                type="text"
+                matInput
+                name="user"
+                required
+                formControlName="user"
+                autocomplete="off"
+              />
+              <mat-error>
+                <p *ngIf="loginFormGroup.controls['user'].errors?.['required']">
+                  Email é um campo obrigatório.
+                </p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="material__form"appearance="outline">
+              <mat-label>Digite sua senha</mat-label>
+              <input
+                [type]="hidePassword ? 'password' : 'text'"
+                matInput
+                name="password"
+                required
+                formControlName="password"
+              />
+              <img 
+                matSuffix 
+                src="../../../assets/icons/eye-{{ hidePassword ? 'close' : 'open' }}.svg" 
+                alt="Ícone mostrar/esconder senha" 
+                (click)="hidePassword = !hidePassword"
+              >
+              <mat-error>
+                <p *ngIf="loginFormGroup.controls['password'].errors?.['required']">
+                  Senha é um campo obrigatório.
+                </p>
+              </mat-error>
+            </mat-form-field>
+            <section class="login__actions">
+              <button (click)="login()">
+                Acessar
+              </button>
+              <p class="login__actions__text">
+                Ainda não possui uma conta? <a class="login__actions__text--link" (click)="navigateToRegister()">Clique aqui</a>
+              </p>
+            </section>
+          </form>
+    </section>
+</body>

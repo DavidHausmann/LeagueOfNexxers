@@ -1,0 +1,29 @@
+.champion__details__header {
+    text-align: center;
+}
+.champion__details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    align-items: center;
+    .champion__details__item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+        align-items: center;
+        p {
+            margin: 0 !important;
+            text-align: justify;
+        }
+        .item__title {
+            color: black;
+            font-weight: 900;
+        }
+    }
+}
+.action {
+    margin-top: 40px;
+    button {
+        width: 100%;
+    }
+}

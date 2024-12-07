@@ -1,0 +1,41 @@
+.register__header {
+    text-align: center;
+    .register__header--color {
+        color: #a6a024;
+    }
+}
+.register__form {
+    ::ng-deep .mat-mdc-form-field-icon-suffix, ::ng-deep .mat-mdc-form-field-infix {
+        margin-top: 8px;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 80px;
+        margin-top: 40px;
+        .material__form {
+            width: 100%;
+            height: 40px;
+        }
+    }
+}
+.register__actions {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    button {
+        width: 100%;
+        cursor: pointer;
+    }
+    .back__button {
+        background-color: #e9e7b5;
+    }
+}
+
+::ng-deep {
+    .ng-star-inserted {
+        #text {
+            word-wrap: break-word;
+        }
+    }
+}

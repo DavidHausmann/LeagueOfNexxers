@@ -1,0 +1,43 @@
+<header class="champion__details__header">
+    <h1>Detalhes do campeão</h1>
+</header>
+<body>
+    <section class="champion__details">
+        <img [src]="service.getChampionSelected().images.icon" alt="Ícone do campeão">
+        <div class="champion__details__item">
+            <p class="item__title">
+                Nome do campeão
+            </p>
+            <p class="item__description">
+                {{ service.getChampionSelected().name }}
+            </p>
+        </div>
+        <div class="champion__details__item">
+            <p class="item__title">
+                Título do campeão
+            </p>
+            <p class="item__description">
+                {{ service.getChampionSelected().title }}
+            </p>
+        </div>
+        <div class="champion__details__item">
+            <p class="item__title">
+                Lore do campeão
+            </p>
+            <p class="item__description">
+                {{ service.getChampionSelected().blurb }}
+            </p>
+        </div>
+        <div class="champion__details__item">
+            <p class="item__title">
+                Categoria do campeão
+            </p>
+            <p class="item__description">
+                {{ service.getChampionSelected().tags }}
+            </p>
+        </div>
+    </section>
+    <section class="action">
+        <button (click)="backToList()">Voltar</button>
+    </section>
+</body>
